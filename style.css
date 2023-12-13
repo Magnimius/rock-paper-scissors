@@ -96,4 +96,14 @@ main {
     display:flex;
     justify-content: center;
     padding-bottom:2rem;
+    gap:15%;
+}
+
+#gameMessage {
+    position:fixed;
+    height:26%;
+    width:50%;
+    align-self: center;
+    z-index:100;
+    visibility:hidden;
 }

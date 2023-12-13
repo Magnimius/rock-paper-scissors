@@ -1,3 +1,6 @@
+let playerScore = 0;
+let compScore = 0;
+
 function getComputerChoice() {
     num = Math.floor(Math.random()*3);
     return numToRSP(num);
@@ -31,7 +34,6 @@ function numToRSP(num) {
 //     return numToRSP(playernum);
 // }
 
-// player selection
 const playerPic = document.getElementById('playerPic');
 const playRock = document.getElementById('rock');
 const playPaper = document.querySelector('#paper');
@@ -42,6 +44,8 @@ playRock.addEventListener('click',function(e) {
   playerPic.style.height="130px"
   playerPic.style.widows="120px"
   playerSelection = 'rock';
+  let computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
 });
 
 playPaper.addEventListener('click',function(e) {
@@ -49,6 +53,8 @@ playPaper.addEventListener('click',function(e) {
   playerPic.style.height="130px";
   playerPic.style.widows="120px";
   playerSelection = 'paper';
+  let computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
 });
 
 playScissors.addEventListener('click',function(e) {
@@ -56,25 +62,46 @@ playScissors.addEventListener('click',function(e) {
   playerPic.style.height="130px"
   playerPic.style.widows="120px"
   playerSelection = 'scissors';
+  let computerSelection = getComputerChoice();
+  playRound(playerSelection,computerSelection);
 });
 
 /* Computer Selection */
 const compPic = document.getElementById('compPic');
-let computerSelection = getComputerChoice();;
-
-let message;
+const usrScore = document.getElementById('usr');
+const MachineScore = document.getElementById('comp');
+const message = document.getElementById('gameMessage');
 function playRound(player, comp) {
     if (
         (player == 'rock' && comp == 'scissors') ||
         (player == 'scissors' && comp == 'paper') ||
         (player == 'paper' && comp == 'rock')
       ) {
-        message = "You win!!!"
+        playerScore+=1;
+        console.log(playerScore);
       } else if (player == comp) {
-        message = "It\'s a tie :/"
+        //do nothing
       } else {
-        message = "You lose :("
+        compScore+=1;
+        console.log(compScore);
+
       }
+    if (playerScore+compScore>=5) {
+        //display either win or lose message
+      if (playerScore > compScore) {
+        message.src="./images/win.png";
+        message.style.visibility="visible"
+      } else {
+        message.src="./images/lose.png";
+        message.style.visibility="visible"
+        message.style.width="37%";
+        message.style.height="26%";
+      }
+    }
+    usrScore.innerText = "PLAYER SCORE: "+String(playerScore);
+    MachineScore.innerText = "COMPUTER SCORE: "+String(compScore);
 }
-playRound(playerSelection,computerSelection)
-console.log(message);
+
+message.addEventListener('click', function(e) {
+  message.style.visibility="hidden";
+})
