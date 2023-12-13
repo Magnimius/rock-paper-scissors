@@ -8,21 +8,18 @@ function getComputerChoice() {
 
 function numToRSP(num) {
     if (num == 0) {
-        concsole.log('rock');
         compPic.src="./images/blackrock.png";
         compPic.style.height="130px";
         compPic.style.width="120px";
         return 'rock';
     }
     if (num == 1) {
-        console.log('paper');
         compPic.src="./images/blackpaper.png";
         compPic.style.height="130px";
         compPic.style.width="120px";
         return 'paper';
     }
     if (num == 2) {
-        console.log('scissors');
         compPic.src="./images/blackscissors.png";
         compPic.style.height="130px";
         compPic.style.width="120px";
